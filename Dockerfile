@@ -22,9 +22,9 @@ WORKDIR /api
 
 ADD . /api
 
-## Expose the port 3000 where application runs
+## Expose the port 3001 where application runs
 
-EXPOSE 3000
+EXPOSE 3001
 
 ## Run npm start to run the server - use double quotes
 

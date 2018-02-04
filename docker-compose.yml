@@ -7,7 +7,7 @@ services: #running services
   web: #our webapp
     build: . #the container is built from the local Dockerfile
     ports:
-    - '3000:3000' #port mapping
+    - '3001:3001' #port mapping
     links:
     - mongo #link web container with mongo container
   mongo:
