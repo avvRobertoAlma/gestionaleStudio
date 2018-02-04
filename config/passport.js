@@ -1,6 +1,6 @@
 var passport = require('passport');
 
-var User = require('../model/userModel');
+var { User } = require('../model/userModel');
 
 var LocalStrategy = require('passport-local').Strategy;
 
@@ -30,6 +30,7 @@ passport.use('local.signup', new LocalStrategy({
         newUser.username = username;
         newUser.password = newUser.encryptPassword(password);
         newUser.email = req.body.email;
+        newUser.role = 'User';
         newUser.save(function(err, result){
             if(err){
                 return done(err);
@@ -53,6 +54,7 @@ passport.use('local.signin', new LocalStrategy({
             return done(null, false, {message: 'No user found!'});
         }
         if(!user.validPassword(password)){
+            console.log('Wrong Pwd');
             return done(null, false, {message: "Wrong Password!"});
         }
         return done(null, user);

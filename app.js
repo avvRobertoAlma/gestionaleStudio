@@ -12,6 +12,9 @@ var flash = require('connect-flash');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
+var dashboard = require('./routes/dashboard');
+var folders = require('./routes/folders');
+var admin = require('./routes/admin');
 
 var app = express();
 var mongoUri = 'mongodb://mongo/docker-project';
@@ -49,8 +52,12 @@ mongoose.connect(mongoUri, (req, res, next, err)=>{
 
 require('./config/passport.js');
 
-app.use('/', index);
+app.use('/dashboard', dashboard);
 app.use('/users', users);
+app.use('/folders', folders);
+app.use('/admin', admin);
+app.use('/', index);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

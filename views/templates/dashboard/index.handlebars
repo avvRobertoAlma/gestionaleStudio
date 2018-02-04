@@ -1,5 +1,23 @@
 <h2>Welcome to dashboard</h2>
 
+<h5>{{folder}}</h5>
+
+{{#if hasFiles}}
+<ul>
+{{#each files}}
+<li class="{{this.className}}">
+<a href="/{{this.path}}">{{this.name}}</a>
+</li>
+{{/each}}
+</ul>
+{{/if}}
+
+<p>Benvenuto {{user.username}}</p>
+
+{{#if mainDashboard}}
+<a href="/folders/clients">Browse Files</a>
+{{/if}}
+
 <div class="btn btn-primary">
     <a href="/users/logout">Logout</a>
 </div>

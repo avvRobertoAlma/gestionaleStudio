@@ -14,7 +14,12 @@ var UserSchema = new Schema({
     },
     email: {
         type: String,
-    }
+    },
+    role: {
+        required:true,
+        type: String,
+    },
+    folders: [{ type: Schema.Types.ObjectId, ref: 'Folder'}]
 });
 
 UserSchema.methods.encryptPassword = function(password){
@@ -25,4 +30,23 @@ UserSchema.methods.validPassword = function(password){
     return bcrypt.compareSync(password, this.password);
 }
 
-var User = module.exports = mongoose.model('User', UserSchema);
+var FolderSchema = new Schema({
+    client: {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+    },
+    name: {
+        type: String,
+        unique: true
+    },
+    path: {
+        type: String,
+        unique: true
+    }
+})
+
+var Folder = mongoose.model('Folder', FolderSchema);
+var User = mongoose.model('User', UserSchema);
+
+module.exports.Folder = Folder;
+module.exports.User = User;

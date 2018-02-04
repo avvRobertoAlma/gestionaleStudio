@@ -6,3 +6,17 @@ body {
 a {
   color: #00B7FF;
 }
+
+.center{
+  text-align: center;
+}
+
+.li-folder {
+  background:url('../images/folder.jpeg') 50% 50% no-repeat no-repeat;
+  padding: 5px;
+}
+
+.li-document {
+  background:url('../images/document.jpeg') 50% 50% no-repeat no-repeat;
+  padding: 5px;
+}
