@@ -5,6 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
+var expressHbs = require('express-handlebars');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -20,9 +21,11 @@ mongoose.connect(mongoUri, (req, res, next, err)=>{
   }
 });
 
+//set express-handlebars as default engine
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'hbs');
+app.engine('handlebars', expressHbs({defaultLayout: 'main', extname:'.handlebars'}));
+app.set('views', path.join(__dirname,'views'));
+app.set('view engine', 'handlebars');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
