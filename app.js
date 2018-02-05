@@ -15,9 +15,10 @@ var users = require('./routes/users');
 var dashboard = require('./routes/dashboard');
 var folders = require('./routes/folders');
 var admin = require('./routes/admin');
+var files = require('./routes/files');
 
 var app = express();
-var mongoUri = 'mongodb://mongo/docker-project';
+var mongoUri = 'mongodb://mongo/gestionale-studio';
 
 
 
@@ -52,6 +53,7 @@ mongoose.connect(mongoUri, (req, res, next, err)=>{
 
 require('./config/passport.js');
 
+app.use('/files', files);
 app.use('/dashboard', dashboard);
 app.use('/users', users);
 app.use('/folders', folders);

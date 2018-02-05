@@ -1,23 +1,65 @@
 <h2>Welcome to dashboard</h2>
 
-<h5>{{folder}}</h5>
-
-{{#if hasFiles}}
-<ul>
-{{#each files}}
-<li class="{{this.className}}">
-<a href="/{{this.path}}">{{this.name}}</a>
-</li>
-{{/each}}
-</ul>
-{{/if}}
 
 <p>Benvenuto {{user.username}}</p>
 
+
+
 {{#if mainDashboard}}
-<a href="/folders/clients">Browse Files</a>
+<div>
+<btn class="btn btn-primary" id="viewFolders" data-userid="{{user._id}}">Visualizza Pratiche</btn>
+</div>
+<br />
+<br />
+
+<ul class="hidden" id="elencoPratiche">
+</ul>
+
 {{/if}}
 
-<div class="btn btn-primary">
-    <a href="/users/logout">Logout</a>
-</div>
+{{#if hasFolder}}
+<h3 class="center">{{folder.name}}</h3>
+<btn class="btn btn-primary" id="backToDashboard">Torna all'elenco Pratiche</btn>
+
+
+<btn class="btn btn-primary" id="browseFiles" data-folderpath="{{folder.path}}">Visualizza contenuto</btn>
+
+<script>
+    var browseFiles = document.querySelector('#browseFiles');
+    browseFiles.addEventListener('click', function(){
+    const path = `/files/${browseFiles.dataset.folderpath}`;
+    window.location.href= path;
+    });
+
+    var backToDashboard = document.querySelector('#backToDashboard');
+
+    backToDashboard.addEventListener('click', function(){
+    window.location.href = '/dashboard';
+});
+
+</script>
+
+
+{{/if}}
+
+{{#if hasFiles}}
+<btn class="btn btn-primary" id="backToDashboard">Torna all'elenco Pratiche</btn>
+
+<ul>
+  {{#each files}}
+<li class="{{this.className}}">
+<a href="{{this.path}}">{{this.name}}</a>
+</li>
+{{/each}}  
+</ul>
+
+<script>
+    var backToDashboard = document.querySelector('#backToDashboard');
+    backToDashboard.addEventListener('click', function(){
+    window.location.href = '/dashboard';
+});
+</script>
+
+{{/if}}
+
+<script src="/javascripts/userDashboard/index.js"></script>

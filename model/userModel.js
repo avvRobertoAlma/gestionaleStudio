@@ -2,6 +2,7 @@ var mongoose = require('mongoose');
 
 var Schema = mongoose.Schema;
 
+
 var bcrypt = require('bcryptjs');
 
 var UserSchema = new Schema({
@@ -30,23 +31,7 @@ UserSchema.methods.validPassword = function(password){
     return bcrypt.compareSync(password, this.password);
 }
 
-var FolderSchema = new Schema({
-    client: {
-        type: Schema.Types.ObjectId,
-        ref: 'User'
-    },
-    name: {
-        type: String,
-        unique: true
-    },
-    path: {
-        type: String,
-        unique: true
-    }
-})
 
-var Folder = mongoose.model('Folder', FolderSchema);
 var User = mongoose.model('User', UserSchema);
 
-module.exports.Folder = Folder;
 module.exports.User = User;

@@ -20,3 +20,7 @@ a {
   background:url('../images/document.jpeg') 50% 50% no-repeat no-repeat;
   padding: 5px;
 }
+
+.hidden {
+  display: none;
+}
