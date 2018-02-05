@@ -6,20 +6,24 @@ const path = require('path');
 
 var { User } = require('../model/userModel');
 
-router.get('/', function(req, res, next){
-    if(!req.isAuthenticated()){
-      console.log('req is not authenticated!');
-      return res.redirect('/users/login');
-    }
+var checkAuthentication = function(req, res, next){
+  if(req.isAuthenticated()){
+    return next();
+  }
+  return res.redirect('/users/login');
+}
+
+router.get('/', checkAuthentication, function(req, res, next){
     console.log(req.user._id, 'requserId');
 
-
-    User.findById(req.user._id, function(err, user){
+    User.findById(req.user._id).populate('folders').exec(function(err, user){
       if(err){
-        return console.log(err);
+      return  console.log(err);
       }
-      console.log(user, 'user current');
-      res.render('./templates/dashboard/index', {mainDashboard: true, user: user});
+      const { folders } = user;
+      console.log(folders);
+
+      res.render('./templates/dashboard/index', {mainDashboard: true, user: user, hasFolders: folders.length>0, folders:folders});
     });
     
   });

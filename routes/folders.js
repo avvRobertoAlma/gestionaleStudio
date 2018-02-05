@@ -34,7 +34,7 @@ router.get('/', checkAdmin, function(req, res, next){
 });
 
 
-router.get('/:id', function(req, res, next){
+router.get('/:id', checkAuthentication, function(req, res, next){
     Folder.findById(req.params.id, function(err, folder){
         if(err){
             return res.json(response);

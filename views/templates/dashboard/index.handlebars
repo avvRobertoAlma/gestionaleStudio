@@ -1,64 +1,63 @@
-<h2>Welcome to dashboard</h2>
-
-
-<p>Benvenuto {{user.username}}</p>
-
-
+<h2 class="center">Area Clienti</h2>
 
 {{#if mainDashboard}}
-<div>
-<btn class="btn btn-primary" id="viewFolders" data-userid="{{user._id}}">Visualizza Pratiche</btn>
-</div>
+
+<h3 class="center">Benvenuto {{user.username}}</h3>
+
+<h4 class="center">Elenco Pratiche</h4>
 <br />
 <br />
 
-<ul class="hidden" id="elencoPratiche">
-</ul>
+{{#if hasFolders}}
+<table class="table">
+    <tr>
+        <th>Nome pratica</th>
+        <th>Status</th>
+        <th>Contenuto</th>
+    </tr>
+    {{#each folders}}
+    <tr>
+        <td>{{this.name}}</td>
+        <td>{{this.status}}</td>
+        <td><a href="/folders/{{this._id}}">Più dettagli</a></td>
+    </tr>
+    {{/each}}
+</table>
+{{else}}
+<p>Non ci sono pratiche affidate allo studio.</p>
+{{/if}}
 
 {{/if}}
 
 {{#if hasFolder}}
-<h3 class="center">{{folder.name}}</h3>
+<h4 class="center">Dettaglio pratica</h3>
+
+<br/>
+<br/>
+
+<p><b>Nome pratica</b>: {{folder.name}}</p>
+<p><b>Stato della pratica:</b>{{folder.status}}</p>
+<p><a href="/files/{{folder.path}}"><i class="fas fa-folder-open"></i>Accedi alla cartella</a></p>
+
+<div style="padding:10px;margin:10px;">
 <btn class="btn btn-primary" id="backToDashboard">Torna all'elenco Pratiche</btn>
-
-
-<btn class="btn btn-primary" id="browseFiles" data-folderpath="{{folder.path}}">Visualizza contenuto</btn>
-
-<script>
-    var browseFiles = document.querySelector('#browseFiles');
-    browseFiles.addEventListener('click', function(){
-    const path = `/files/${browseFiles.dataset.folderpath}`;
-    window.location.href= path;
-    });
-
-    var backToDashboard = document.querySelector('#backToDashboard');
-
-    backToDashboard.addEventListener('click', function(){
-    window.location.href = '/dashboard';
-});
-
-</script>
+</div>
 
 
 {{/if}}
 
 {{#if hasFiles}}
-<btn class="btn btn-primary" id="backToDashboard">Torna all'elenco Pratiche</btn>
+<h4 class="center">Contenuto della cartella</h3>
+
 
 <ul>
   {{#each files}}
 <li class="{{this.className}}">
-<a href="{{this.path}}">{{this.name}}</a>
+<a href="{{this.name}}">{{this.name}}</a>
 </li>
 {{/each}}  
 </ul>
 
-<script>
-    var backToDashboard = document.querySelector('#backToDashboard');
-    backToDashboard.addEventListener('click', function(){
-    window.location.href = '/dashboard';
-});
-</script>
 
 {{/if}}
 

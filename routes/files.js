@@ -6,7 +6,14 @@ const fs = require('fs');
 
 /* LEVEL */
 
-router.get('/*', function(req, res, next){
+var checkAuthentication = function(req, res, next){
+    if(req.isAuthenticated()){
+      return next();
+    }
+    return res.redirect('/users/login');
+  }
+
+router.get('/*', checkAuthentication, function(req, res, next){
     const url = req.url;
     const reqPath = path.join('/api', '/files', url);
     console.log(reqPath);
