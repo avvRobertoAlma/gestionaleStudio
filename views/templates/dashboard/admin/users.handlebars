@@ -1,12 +1,60 @@
 <div class="body">
 
+    {{#if hasMessages}}
+    <div class="alert alert-success">{{message}}</div>
+
+    {{/if}}
+
+    {{#if hasError}}
+    <div class="alert alert-danger">{{error}}</div>
+
+    {{/if}}
+
+    <!-- USERS LISTING -->
+
     {{#if hasUsers}}
-        <table class="table">
+
+    <div id="addUserForm" class="hidden">
+        <div class="form-group">
+            <form id="addUser" action="/admin/users" method="POST">
+                <div class="container">
+                    <div class="form-group">
+                        <label for="username"><b>Username</b></label>
+                        <input type="text" id="Username" name="username" class="form-control" placeholder="Enter Username" name="username" required>
+                        </div>
+                     <div class="form-group">
+                         <label for="email"><b>Email</b></label>
+                        <input type="text" id="email" name="email" class="form-control" placeholder="Enter Email" name="email" required>
+                    </div>  
+                <div class="form-group">
+                    <label for="password"><b>Password</b></label>
+                    <input type="text" name="password" class="form-control" placeholder="Enter Password" name="psw" required>
+                </div>
+                <div class="form-group">
+                    <label for="role">Ruolo</label>
+                    <select id="role" name="role">
+                        <option value="User">Utente</option>
+                        <option value="Admin">Amministratore</option>
+                    </select>
+                </div>  
+                <div class="clearfix">
+                    <button type="submit" class="btn btn-primary">Crea Utente</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<button id="addUserButton" class="btn btn-primary">Aggiungi Utente</button>
+
+
+        <table class="table table-striped">
     <tr>
         <th>ID</th>
         <th>Email</th>
         <th>Ruolo</th>
         <th>Profilo</th>
+        <th>Azioni</th>
     </tr>
     {{#each users}}
     <tr>
@@ -14,12 +62,59 @@
         <td>{{this.email}}</td>
          <td>{{this.role}}</td>
         <td><a href="/admin/users/{{this._id}}">Più dettagli</a></td>
+       <!-- <td><button class="btn btn-danger" onclick="deleteUser('{{this._id}}')"><i class="fa fa-trash"></i></button></td>-->
+       <td><a href="/admin/users/{{this._id}}/delete"><i class="fa fa-trash"></i></a></td>
+    </tr>
+    {{/each}}
+</table>
+
+{{/if}}
+
+<!-- END USERS LISTING -->
+
+<!-- SINGLE USER LISTING -->
+
+{{#if hasUser}}
+
+<h3 class="center">Dettaglio Utente</h4>
+
+<ul>
+    <li><b>ID Utente: </b>{{user.username}}</li>
+    <li><b>Email Utente: </b>{{user.email}}</li>
+    <li><b>Ruolo Utente: </b>{{user.role}}</li>
+</ul>
+
+<h4 class="center">Elenco Pratiche per l'utente: {{user.username}}</h4>
+{{#if hasFolders}}
+<table class="table table-striped">
+    <tr>
+        <th>Nome pratica</th>
+        <th>Status</th>
+        <th>Contenuto</th>
+    </tr>
+    {{#each folders}}
+    <tr>
+        <td>{{this.name}}</td>
+        <td>{{this.status}}</td>
+        <td><a href="/admin/folders/{{this._id}}">Più dettagli</a></td>
     </tr>
     {{/each}}
 </table>
 {{else}}
-<p>Non ci sono utenti.</p>
+<p>Non ci sono pratiche per l'utente corrente affidate allo studio.</p>
 {{/if}}
+
+{{/if}}
+
+<!-- END SINGLE USER -->
 
     
 </div>
+
+
+
+
+{{#if usersListing}}
+<script src="/javascripts/admin/deleteUsers.js"></script>
+<script src="/javascripts/admin/addUser.js"></script>
+{{/if}}
