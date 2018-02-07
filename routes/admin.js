@@ -119,11 +119,12 @@ router.post('/folders', checkAdmin, function(req, res, next){
                 status:req.body.status,
                 path:req.body.path
             });
+            const currentUser = user;
             console.log('newFolder', newFolder);
             newFolder.save(function(err, doc){
                 if(err){
                     console.log(err);
-                    req.flash('error', err);
+                    req.flash('error', err.message);
                     return res.redirect('/admin/folders');
                 }
                 console.log('saved folder!');

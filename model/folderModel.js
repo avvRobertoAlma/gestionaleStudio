@@ -10,7 +10,6 @@ var FolderSchema = new Schema({
     },
     name: {
         type: String,
-        unique: true
     },
     path: {
         type: String,
@@ -18,7 +17,6 @@ var FolderSchema = new Schema({
     },
     status: {
         type: String,
-        unique: true,
     }
 })
 
