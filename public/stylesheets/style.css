@@ -32,7 +32,12 @@ nav a:hover{
   color: white;
 }
 
-#addUserButton{
+#addUserButton {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+#addFolderButton {
   margin-top: 10px;
   margin-bottom: 10px;
 }
