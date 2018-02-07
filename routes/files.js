@@ -42,8 +42,9 @@ router.get('/*', checkAuthentication, function(req, res, next){
                     extension: path.extname(file),
                     className: fs.statSync(path.join(reqPath, file)).isDirectory() ? 'li-folder' : 'li-document'
                 });
+            console.log(fileArray);
             });
-            return res.render('templates/dashboard/index', {hasFiles: true, files: fileArray})
+            return res.render('templates/dashboard/index', {layout:'userDashboard', hasFiles: true, files: fileArray})
         });        
     }
 

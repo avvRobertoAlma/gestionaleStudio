@@ -1,10 +1,9 @@
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-a {
-  color: #00B7FF;
+.body{
+  padding: 70px;
 }
 
 .center{
@@ -23,4 +22,12 @@ a {
 
 .hidden {
   display: none;
+}
+
+nav a {
+  color: black;
+}
+
+nav a:hover{
+  color: white;
 }

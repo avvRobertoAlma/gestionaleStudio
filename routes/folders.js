@@ -42,7 +42,7 @@ router.get('/:id', checkAuthentication, function(req, res, next){
         if(!folder){
             return res.json(response);
         }
-        return res.render('./templates/dashboard/index', {hasFolder: true, folder: folder});
+        return res.render('./templates/dashboard/index', {layout:'userDashboard.handlebars', hasFolder: true, folder: folder});
     })
 });
 

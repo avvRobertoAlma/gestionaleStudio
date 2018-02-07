@@ -1,0 +1,25 @@
+<div class="body">
+
+    {{#if hasUsers}}
+        <table class="table">
+    <tr>
+        <th>ID</th>
+        <th>Email</th>
+        <th>Ruolo</th>
+        <th>Profilo</th>
+    </tr>
+    {{#each users}}
+    <tr>
+        <td>{{this.username}}</td>
+        <td>{{this.email}}</td>
+         <td>{{this.role}}</td>
+        <td><a href="/admin/users/{{this._id}}">Più dettagli</a></td>
+    </tr>
+    {{/each}}
+</table>
+{{else}}
+<p>Non ci sono utenti.</p>
+{{/if}}
+
+    
+</div>

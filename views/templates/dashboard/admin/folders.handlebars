@@ -1,0 +1,25 @@
+<div class="body">
+
+    {{#if hasFolders}}
+<table class="table">
+    <tr>
+        <th>Utente</th>
+        <th>Nome pratica</th>
+        <th>Status</th>
+        <th>Contenuto</th>
+    </tr>
+    {{#each folders}}
+    <tr>
+        <td>{{this.clientId.username}}</td>
+        <td>{{this.name}}</td>
+        <td>{{this.status}}</td>
+        <td><a href="/admin/folders/{{this._id}}">Più dettagli</a></td>
+    </tr>
+    {{/each}}
+</table>
+{{else}}
+<p>Non ci sono pratiche affidate allo studio.</p>
+{{/if}}
+
+    
+</div>

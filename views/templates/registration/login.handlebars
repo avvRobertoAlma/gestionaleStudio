@@ -1,21 +1,35 @@
-<h1 class="center">Login Page</h1>
+<link rel="stylesheet" href="/stylesheets/login.css" >   
+    
+    <h1 class="center welcome">Area Riservata</h1>
+    <h2 class="center">Inserisci le tue credenziali</h2>
 
-<div class="form-group">
-<form id="login" action="./login" method="POST">
-        <div class="container">
-            <div class="form-group">
-        <label for="username"><b>Username</b></label>
-        <input type="text" id="username" name="username" class="form-control" placeholder="Enter username" name="name" required>
-    </div>
-    <div class="form-group">
-          <label for="password"><b>Password</b></label>
-          <input type="password" name="password" class="form-control" placeholder="Enter Password" name="psw" required>
-    </div>
-          <div class="clearfix">
-            <button type="button" id="cancelbtn" class="btn btn-light">Cancel</button>
-            <button type="submit" class="btn btn-primary">login</button>
-          </div>
-        </div>
-      </form>
-    </div>
+<div id="main">
+    <div class="auth-wrapper">
+        <div class="auth-box">
+            <div class="auth-box-inner">
+                <div class="auth-box-col">
+                  <img class="logo-login" src="/images/logo-2.jpeg">
+                </div><!-- /.auth-box-col -->
+                <div class="auth-box-col">
+                        <form id="login" action="./login" method="POST">
+                            <div class="container">
+                                <div class="form-group">
+                                    <label for="username">Username</label>
+                                    <input type="text" id="username" name="username" class="form-control" placeholder="Enter username" name="name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="password">Password</label>
+                                    <input type="password" name="password" class="form-control" placeholder="Enter Password" name="psw" required>
+                                </div>
+                                <div class="clearfix">
+                                     <button type="submit" class="btn btn-primary">login</button>
+                                </div>
+                        </form>
+                     </div>
+                 </div><!-- /.auth-box-col -->
+            </div> <!-- /.auth-box-inner -->
+        </div> <!-- /.login -->
   
+     </div> <!-- /.auth-wrapper -->
+
+</div><!-- /#main -->   
